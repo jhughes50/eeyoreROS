@@ -1,0 +1,5 @@
+eeyore_ros:
+  trigger_type: SOFTWARE
+  cal_path: /home/dcist/camera_ws/src/eeyore/cal/eo_calibration.yaml
+  frame_rate: 24
+  image_type: bgr8
