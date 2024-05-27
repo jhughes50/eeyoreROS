@@ -35,6 +35,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
   ${OpenCV_INCLUDE_DIRS}
   ${Spinnaker_INCLUDE_DIRS}
+  /usr/local/include/boson
 )
 
 #target_link_libraries(${PROJECT_NAME}
@@ -58,3 +59,18 @@ target_link_libraries(electro_optical_node
   ${OpenCV_LIBRARIES}
 )
 
+add_executable(boson_node
+  src/boson_wrapper.cpp
+  src/boson_node.cpp
+)
+
+add_dependencies(boson_node
+  ${${PROJECT_NAME}_EXPORTED_TARGETS} 
+  ${catkin_EXPORTED_TARGETS}
+)
+
+target_link_libraries(boson_node
+  ${catkin_LIBRARIES}
+  ${Spinnaker_LIBRARIES}
+  ${OpenCV_LIBRARIES}
+)
