@@ -16,7 +16,9 @@ int main(int argc, char **argv)
 
     try
     {
-        ElectroOpticalWrapper node(&nh, 0 , 0, trigger_type);
+        int h = 0;
+        int w = 0;
+        ElectroOpticalWrapper node(&nh, h, w, trigger_type);
         ros::spin();
     }
     catch (const std::exception& e)

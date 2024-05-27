@@ -3,30 +3,32 @@
 *  About: ROS node for the spinnaker wrapper in eeyore
 */
 
-#include "eeyorROS/electro_optical_wrapper.hpp"
+#include "eeyoreROS/electro_optical_wrapper.hpp"
 
 ElectroOpticalWrapper::ElectroOpticalWrapper(ros::NodeHandle *nh, int h, int w, std::string t)
+    : camera_(h,w,t)
 {
     image_transport::ImageTransport it(*nh);
     cam_pub_ = it.advertise("camera/electo_optical", 10);
 
-    cam_.quickStart();
+    camera_.quickStart();
 
     std::string cal_path;
     nh -> getParam("eeyore_ros/cal_path", cal_path);
 
-    cv::Mat intrinsic = cam_.getParams(cal_path, "K");
-    cv::Mat distance = cam_.getParams(cal_path, "D");
+    cv::Mat intrinsic = camera_.getParams(cal_path, "K");
+    cv::Mat distance = camera_.getParams(cal_path, "D");
 
-    cam_.setIntrinsicCoeffs(intrinsic);
-    cam_.setDistanceCoeffs(distance);
+    camera_.setIntrinsicCoeffs(intrinsic);
+    camera_.setDistanceCoeffs(distance);
 
     nh -> getParam("eeyore_ros/frame_rate", frame_rate_);
+    nh -> getParam("eeyore_ros/frame_id", frame_id_);
 }
 
 ElectroOpticalWrapper::~ElectroOpticalWrapper()
 {
-    cam_.closeDevice();
+    camera_.closeDevice();
 }
 
 void ElectroOpticalWrapper::main()
@@ -36,11 +38,11 @@ void ElectroOpticalWrapper::main()
     while (ros::ok())
     {
         cv_bridge::CvImagePtr cv_ptr(new cv_bridge::CvImage);
-        cv::Mat img = blackfly_cam_.getFrame();
+        cv::Mat img = camera_.getFrame();
 
         cv_ptr->encoding = "bgr8";
-        cv_ptr->header.stamp = time_in.stamp;
-        cv_ptr->header.frame_id = time_in.frame_id;
+        cv_ptr->header.stamp = ros::Time::now();
+        cv_ptr->header.frame_id = frame_id_;
         cv_ptr->image = img;
 
         this -> cam_pub_.publish(cv_ptr->toImageMsg());

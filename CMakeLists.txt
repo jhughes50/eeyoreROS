@@ -23,8 +23,8 @@ find_package(Spinnaker REQUIRED)
 
 catkin_package(
   INCLUDE_DIRS include
-  LIBRARIES eeyoreROS
-  CATKIN_DEPENDS geometry_msgs nav_msgs roscpp sensor_msgs std_msgs
+  LIBRARIES eeyore_ros
+  CATKIN_DEPENDS geometry_msgs nav_msgs roscpp sensor_msgs std_msgs eeyore
 #  DEPENDS system_lib
 )
 
@@ -53,7 +53,6 @@ add_dependencies(electro_optical_node
 )
 
 target_link_libraries(electro_optical_node
-  ${PROJECT_NAME}
   ${catkin_LIBRARIES}
   ${Spinnaker_LIBRARIES}
   ${OpenCV_LIBRARIES}

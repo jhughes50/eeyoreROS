@@ -17,7 +17,7 @@
 class ElectroOpticalWrapper
 {
     public:
-        ElectrOpticalWrapper(ros::NodeHandle *nh, int h, int w, std::string t);
+        ElectroOpticalWrapper(ros::NodeHandle *nh, int h, int w, std::string t);
         ~ElectroOpticalWrapper();
 
     private:
@@ -25,5 +25,8 @@ class ElectroOpticalWrapper
         ElectroOpticalCam camera_;
 
         int frame_rate_;
+        std::string frame_id_;
+
+        void main();
 };
 #endif
