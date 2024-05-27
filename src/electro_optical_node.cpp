@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 
     std::string trigger_type;
 
-    nh.getParam("eeyore_ros/trigger_type", trigger_type);
+    nh.getParam("eo_node/trigger_type", trigger_type);
 
     try
     {
