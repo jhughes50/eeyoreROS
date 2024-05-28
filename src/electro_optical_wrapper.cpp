@@ -24,6 +24,8 @@ ElectroOpticalWrapper::ElectroOpticalWrapper(ros::NodeHandle *nh, int h, int w, 
 
     nh -> getParam("eo_node/frame_rate", frame_rate_);
     nh -> getParam("eo_node/frame_id", frame_id_);
+
+    main();
 }
 
 ElectroOpticalWrapper::~ElectroOpticalWrapper()

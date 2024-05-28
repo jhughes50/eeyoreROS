@@ -27,6 +27,8 @@ BosonWrapper::BosonWrapper(ros::NodeHandle *nh,uint32_t dev, uint32_t baud, int 
     result = camera_.openSensor();
 
     serial_number_ = camera_.getSerialNumber();
+
+    main();
 }
 
 BosonWrapper::~BosonWrapper()
@@ -37,6 +39,7 @@ BosonWrapper::~BosonWrapper()
 void BosonWrapper::main()
 {
     ros::Rate rate(frame_rate_);
+    ROS_INFO("Acquiring Images...");
 
     while (ros::ok())
     {
