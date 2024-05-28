@@ -1,9 +1,9 @@
 boson_node:
   trigger_type: SOFTWARE
-  cal_path: /home/dcist/camera_ws/src/eeyore/cal/boson_calibration.yaml
+  cal_path: /home/dcist/camera_ws/src/eeyore/cal/ir_calibration.yaml
   frame_rate: 9
   frame_id: boson
-  width: 640
-  height: 512
+  width: 320
+  height: 256
   sensor_name: boson
   video_id: /dev/boson_video
