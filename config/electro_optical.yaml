@@ -1,6 +1,6 @@
 eo_node:
   trigger_type: SOFTWARE
-  cal_path: /home/dcist/camera_ws/src/eeyore/cal/eo_calibration.yaml
+  cal_path: /home/dcist/dcist_ws/src/eeyore/cal/eo_calibration.yaml
   frame_rate: 24
   image_type: bgr8
   frame_id: chamelion
