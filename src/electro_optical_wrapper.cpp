@@ -9,7 +9,7 @@ ElectroOpticalWrapper::ElectroOpticalWrapper(ros::NodeHandle *nh, int h, int w, 
     : camera_(h,w,t)
 {
     image_transport::ImageTransport it(*nh);
-    cam_pub_ = it.advertise("camera/electo_optical", 10);
+    cam_pub_ = it.advertise("camera/electro_optical", 10);
 
     camera_.quickStart();
 
