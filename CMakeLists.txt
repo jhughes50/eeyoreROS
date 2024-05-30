@@ -15,6 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   image_transport
   cv_bridge
+  nodelet
   eeyore
 )
 
@@ -24,8 +25,8 @@ find_package(Spinnaker REQUIRED)
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES eeyore_ros
-  CATKIN_DEPENDS geometry_msgs nav_msgs roscpp sensor_msgs std_msgs eeyore
-#  DEPENDS system_lib
+  CATKIN_DEPENDS geometry_msgs nav_msgs roscpp sensor_msgs std_msgs nodelet eeyore
+  #  DEPENDS system_lib
 )
 
 ## Specify additional locations of header files
@@ -39,6 +40,7 @@ include_directories(
 )
 
 #target_link_libraries(${PROJECT_NAME}
+#  ${Spinnaker_LIBRARIES}
 #  ${OpenCV_INCLUDE_DIRS}
 #  ${catkin_LIBRARIES}
 #)
@@ -59,6 +61,22 @@ target_link_libraries(electro_optical_node
   ${OpenCV_LIBRARIES}
 )
 
+#add_executable(electro_optical_nodelet
+#  src/electro_optical_nodelet_wrapper.cpp
+#  src/electro_optical_nodelet.cpp
+#)
+#
+#add_dependencies(electro_optical_nodelet 
+#  ${${PROJECT_NAME}_EXPORTED_TARGETS}
+#  ${catkin_EXPORTED_TARGETS}
+#)
+#
+#target_link_libraries(electro_optical_nodelet
+#  ${catkin_LIBRARIES}
+#  ${Spinnaker_LIBRARIES}
+#  ${OpenCV_LIBRARIES}
+#)
+
 add_executable(boson_node
   src/boson_wrapper.cpp
   src/boson_node.cpp
@@ -73,4 +91,26 @@ target_link_libraries(boson_node
   ${catkin_LIBRARIES}
   ${Spinnaker_LIBRARIES}
   ${OpenCV_LIBRARIES}
+)
+
+add_library(electro_optical_nodelet 
+  src/electro_optical_nodelet_wrapper.cpp
+)
+
+target_link_libraries(electro_optical_nodelet 
+  ${catkin_LIBRARIES}
+  ${Spinnaker_LIBRARIES}
+  ${OpenCV_LIBRARIES}
+)
+
+install(FILES nodelet_plugins.xml
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
+
+install(DIRECTORY launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/
+)
+
+install(DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )

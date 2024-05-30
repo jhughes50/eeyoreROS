@@ -1,0 +1,7 @@
+<library path="lib/libelectro_optical_nodelet">
+  <class name="eeyore_ros/ElectroOpticalNodelet" type="eeyore_ros::ElectroOpticalNodelet" base_class_type="nodelet::Nodelet">
+  <description>
+    Nodelet for spinnaker cam  
+  </description>
+  </class>
+</library>
