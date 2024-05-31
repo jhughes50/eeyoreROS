@@ -4,4 +4,4 @@ eo_node:
   frame_rate: 24
   image_type: bgr8
   frame_id: chamelion
-
+  recitfy: false
