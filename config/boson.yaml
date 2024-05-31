@@ -1,7 +1,7 @@
 boson_node:
   trigger_type: SOFTWARE
   cal_path: /home/dcist/dcist_ws/src/eeyore/cal/ir_calibration.yaml
-  frame_rate: 9
+  frame_rate: 2
   frame_id: boson
   width: 320
   height: 256
