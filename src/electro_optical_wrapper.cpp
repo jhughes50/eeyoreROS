@@ -57,15 +57,8 @@ void ElectroOpticalWrapper::main()
         cv_ptr->header.frame_id = frame_id_;
         cv_ptr->image = img;
        
-        try
-        {   
-            sensor_msgs::ImagePtr msg = cv_ptr->toImageMsg();
-            this -> cam_pub_.publish(msg);
-        }
-        catch (const std::exception& e)
-        {
-            ROS_ERROR("%s", e.what());    
-        }
+        sensor_msgs::ImagePtr msg = cv_ptr->toImageMsg();
+        this -> cam_pub_.publish(msg);
 
         ros::spinOnce();
         rate.sleep();
