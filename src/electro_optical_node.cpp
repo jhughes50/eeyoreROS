@@ -16,8 +16,8 @@ int main(int argc, char **argv)
 
     try
     {
-        int h = 0;
-        int w = 0;
+        int h = 1024;
+        int w = 1280;
         ElectroOpticalWrapper node(&nh, h, w, trigger_type);
         ros::spin();
     }
