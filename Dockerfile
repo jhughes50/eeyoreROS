@@ -142,7 +142,9 @@ RUN cd /home/$USER/ws \
  && catkin config --extend /opt/ros/noetic \
  && catkin build --no-status -DCMAKE_BUILD_TYPE=Release
 
-#RUN echo 'source ~/.bashrc_host' >> ~/.bashrc
 RUN /bin/sh -c 'echo ". /etc/profile.d/setup_spinnaker_paths.sh" >> ~/.bashrc'
 RUN /bin/sh -c 'echo ". /opt/ros/noetic/setup.bash" >> ~/.bashrc'
 RUN /bin/sh -c 'echo ". ~/ws/devel/setup.bash" >> ~/.bashrc'
+
+# add a folder for data
+RUN mkdir -p ~/data

@@ -27,6 +27,7 @@ docker run --rm -it --gpus all \
     -e "TERM=xterm-256color" \
     -v "/dev:/dev" \
     -v "/tmp/.X11-unix:/tmp/.X11-unix" \
+    -v "./data:/home/eeyore/data" \
     -e DISPLAY=$DISPLAY \
     -e QT_X11_NO_MITSHM=1 \
     -e XAUTHORITY=$XAUTH \

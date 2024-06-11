@@ -15,15 +15,6 @@ ElectroOpticalWrapper::ElectroOpticalWrapper(ros::NodeHandle *nh, int h, int w, 
 
     camera_.quickStart();
 
-    std::string cal_path;
-    nh -> getParam("eo_node/cal_path", cal_path);
-
-    cv::Mat intrinsic = camera_.getParams(cal_path, "K");
-    cv::Mat distance = camera_.getParams(cal_path, "D");
-
-    camera_.setIntrinsicCoeffs(intrinsic);
-    camera_.setDistanceCoeffs(distance);
-
     nh -> getParam("eo_node/frame_rate", frame_rate_);
     nh -> getParam("eo_node/frame_id", frame_id_);
 
